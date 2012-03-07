@@ -4,7 +4,7 @@ float countdown = 0;
 Monster m;
 
 void setup() {
-  size(400,400);
+  size(600,600);
   countdown = duration;
   m = new Monster();
   m.incTrust(100);
@@ -99,15 +99,21 @@ class Monster {
       println("Distance: " + distance);
       if (distY != 0) {
         movX = (int)distance / distY;
+        // Set maximum travel per move X-wards
+        if (movX > 2)
+          movX = 2;
         if (mouseX < xpos)
           movX *= -1;
       }
       if (distX != 0) {
         movY = (int)distance / distX;
+        // Set maximum travel per move Y-wards
+        if (movY > 2)
+          movY = 2;
         if (mouseY < ypos)
           movY *= -1;
       }
-      delay(((abs(movX)-1)+(abs(movY)-1))*10);
+      delay(((abs(movX)-1)+(abs(movY)-1))*20);
       println("Moving " + movX + " to the X and " + movY + " to the Y");
     }
     xpos += movX;
@@ -127,3 +133,4 @@ class Monster {
   }
   
 }
+
